@@ -1,0 +1,91 @@
+:root{
+    --cor-hover: rgba(255, 252, 252, 0.959);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing:border-box;
+}
+
+ol{
+    list-style: none;
+}
+
+body{
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: rgba(239, 218, 207, 1);
+    
+}
+
+.menu{
+    display: flex;
+    justify-content:last baseline;
+    gap: 210px;
+    background-color: rgba(174, 193, 163, 1);
+    color: rgba(174, 193, 163, 1);
+    padding: 16px;
+}
+
+.menu li{
+    display: flex;
+    align-items: center;
+    padding: 20px 30px;
+    transition: .5s;
+}
+
+.menu img{
+    height: 80px;
+    align-items: center;
+} 
+
+ 
+#pesquisar{
+    padding: 8px 16px;
+    font-size: 15px;
+    outline: none;
+    background: rgba(174, 193, 163, 1);
+    color: #000000;
+    border: none;
+    border-radius: 10px 10px 10px 10px;
+    cursor: pointer;
+}
+
+#frutas{
+    padding: 8px 16px;
+    font-size: 20px;
+    cursor: pointer;
+    background: rgba(174, 193, 163, 1);
+    border: rgba(239, 218, 207, 1);
+    border-radius: 25px 25px 25px 25px;
+}
+
+main{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20vh;
+    width: 100vw;
+}
+
+#containertexto{
+    display: flex;
+    padding-top: 10vh;
+    flex-direction: column;
+    text-align:center;
+    gap: 10px;
+    color: rgb(0, 0, 0);
+    font-family: "Martian Mono", monospace;
+    font-size: 15px;
+}
+
+#lista li:hover{
+    color: red;
+    cursor: pointer;
+
+}
