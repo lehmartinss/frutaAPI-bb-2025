@@ -91,9 +91,9 @@ main{
 } 
 
 #lista{
-    column-count: 3;
-    column-gap: 20px;
-    padding: 50px;
+        column-count: 3;
+        column-gap: 20px;
+        padding: 50px;
 }
 
 #lista li {
@@ -118,18 +118,26 @@ main{
     color:#000000;
 }
 
-/* 
-.Card h2{
+
+.card h1{
     text-align: center;
     color: black;
     margin-top:  10px;
 }
+/* 
+.info {
+    text-align: left;
+}
+.info span {
+    font-weight: bold;
+}
+.red { color: red; } */
 
-.detalhes, .Card p {
+/* .detalhes, .Card p {
     padding: 10px;
     display: grid;
 }
 
 .detalhes p, .Card p {
     text-align: center;
-} */
+}  */
