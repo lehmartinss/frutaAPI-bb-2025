@@ -193,7 +193,7 @@
 
 
 async function pesquisarFrutasALL() {
-  const url = `https://api.codetabs.com/v1/proxy?quest=https://www.fruityvice.com/api/fruit/all;`
+  const url = `https://api.codetabs.com/v1/proxy?quest=https://www.fruityvice.com/api/fruit/all`;
   const response = await fetch(url);
   return response.json();
 
@@ -279,7 +279,7 @@ async function pesquisarPorFamilia(familia) {
   lista.style.textAlign = "center";
 
   if (frutasFiltradas.length === 0) {
-    lista.innerHTML = <p style="font-size: 18px;">Nenhuma fruta encontrada para essa família.</p>;
+    lista.innerHTML = `<p style="font-size: 18px;">Nenhuma fruta encontrada para essa família.</p>;`
     return;
 }
 
