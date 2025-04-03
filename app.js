@@ -39,68 +39,131 @@ async function pesquisa(name){
     const fruta = frutas.find(fruta => fruta.name === name)
     return fruta
 }
-function frutainfo(fruta,div){
-    const card = document.getElementById('info')
-    const informacoes = document.getElementById('informacoes')
-    const nome = document.getElementById('nome')
-    const infoFrutas = document.getElementById('infoFrutas')
 
 
-    const h1Id = document.createElement('p')
-    const h1Family = document.createElement('p')
-    const h1Order = document.createElement('p')
-    const h1Genus = document.createElement('p')
-    const h1Nutritions = document.createElement('p')
-    const h1Calories = document.createElement('p')
-    const h1Fat = document.createElement('p')
-    const h1Sugar = document.createElement('p')
-    const h1Carbohydrates = document.createElement('p')
-    const h1Protein = document.createElement('p')
+// Exibe na tela
+function frutainfo(infoFruta, info) {
+    info.classList.add("info-card");
 
-    const h1Nome = document.createElement('p')
-
-    const spanID = document.createElement('span')
-    const spanFamily = document.createElement('span')
-    const spanOrder = document.createElement('span')
-    const spanGenus = document.createElement('span')
-    const spanCalories = document.createElement('span')
-    const spanFat = document.createElement('span')
-    const spanSugar = document.createElement('span')
-    const spanCarbohydrates  = document.createElement('span')
-    const spanProtein = document.createElement('span')
-
-
-    h1Id.textContent = "Id:"
-    h1Family.textContent = "Family"
-    h1Order.textContent = "Order"
-    h1Genus.textContent = "Genus"
-    h1Nutritions.textContent = "Nutritions"
-    h1Calories.textContent = "Calories"
-    h1Fat.textContent = "Fat"
-    h1Sugar.textContent = "Sugar"
-    h1Carbohydrates.textContent = "Carbohydrates"
-    h1Protein.textContent = "Protein"
-
-
-    h1Nome.textContent = fruta.name
-    spanID.textContent = fruta.id
-    spanFamily.textContent = fruta.family
-    spanOrder.textContent = fruta.order
-    spanGenus.textContent = fruta.genus
-    spanCalories.textContent = fruta.calories
-    spanFat.textContent = fruta.fat
-    spanSugar.textContent = fruta.sugar
-    spanCarbohydrates.textContent = fruta.Carbohydrates
-    spanProtein.textContent = fruta.protein
-
-
-    div.appendChild(h1Nome)
-    div.appendChild(spanID)
-    div.appendChild(spanFamily)
-    div.appendChild(spanOrder)
-    div.appendChild(spanGenus)
+    info.style.display = "flex";
+    info.style.flexDirection = "column";
+    info.style.alignItems = "center";
+    info.style.justifyContent = "center";
+    info.style.backgroundColor = "#b0c4a3"; // Cor do fundo do card
+    info.style.borderRadius = "20px";
+    info.style.padding = "20px";
+    info.style.width = "60%";
+    info.style.margin = "20px auto";
+    info.style.boxShadow = "3px 3px 10px rgba(0, 0, 0, 0.2)";
+  
+    info.innerHTML = `
+        <div>
+          <header>
+            <h1>${infoFruta.name}</h1>
+          </header> <!-- Corrigido o fechamento da tag -->
     
-}
+          <ul>
+            <li><strong>Id: ${infoFruta.id}</li>
+            <li><strong>Family: ${infoFruta.family}</li>
+            <li><strong>Order: ${infoFruta.order}</li>
+            <li><strong>Genus: ${infoFruta.genus}</li>
+            <h1>Nutritions:</h1>
+            <li>Calories: ${infoFruta.nutritions.calories}</li>
+            <li>Fat: ${infoFruta.nutritions.fat}</li>
+            <li>Sugar: ${infoFruta.nutritions.sugar}</li>
+            <li>Carbohydrates: ${infoFruta.nutritions.carbohydrates}</li>
+            <li>Protein: ${infoFruta.nutritions.protein}</li>
+          </ul>
+        </div> 
+      `;
+  }
+
+  async function listarFrutas() {
+    const frutas = await pesquisarFrutasALL();
+    const homeScreen = document.getElementById("containertexto");
+    const lista = document.getElementById("lista");
+    const infoContainer = document.getElementById("info");
+  
+    homeScreen.style.display = "none";
+    infoContainer.style.display = "none";
+    lista.innerHTML = "";
+    lista.style.display = "block";
+  
+    frutas.forEach((fruta) => {
+      const li = document.createElement("li");
+      li.textContent = fruta.name;
+      li.addEventListener("click", async () => {
+        lista.style.display = "none";
+        infoContainer.style.display = "flex";
+        infoContainer.innerHTML = "";
+        const infoFruta = await pesquisa(fruta.name);
+        frutainfo(infoFruta, infoContainer);
+      });
+      lista.appendChild(li);
+    });
+  }
+
+  async function pesquisarPorFamilia(familia) {
+    const frutas = await pesquisarFrutasALL();
+    const frutasFiltradas = frutas.filter(
+      (fruta) => fruta.family.toLowerCase() === familia.toLowerCase()
+    );
+ }
+
+ const homeScreen = document.getElementById("containertexto");
+ const lista = document.getElementById("lista");
+ const infoContainer = document.getElementById("info");
+
+ homeScreen.style.display = "none";
+ infoContainer.style.display = "none";
+ lista.innerHTML = "";
+ lista.style.display = "flex";
+ lista.style.flexWrap = "wrap";
+ lista.style.justifyContent = "center";
+ lista.style.alignItems = "center";
+ lista.style.gap = "30px";
+ lista.style.padding = "20px";
+ lista.style.textAlign = "center";
+
+
+//  if (frutasFiltradas.length === 0) {
+//     lista.innerHTML = <p style="font-size: 18px;">Nenhuma fruta encontrada para essa família.</p>;
+//     return;
+//   }
+
+//   frutasFiltradas.forEach((fruta) => {
+//     const div = document.createElement("div");
+//     div.style.textAlign = "center";
+//     div.style.fontFamily = "monospace";
+//     div.style.fontSize = "18px";
+//     div.style.padding = "10px";
+//     div.style.borderRadius = "8px";
+
+//     div.innerHTML = `
+//     <p style="font-size: 22px; font-weight: bold;">• ${fruta.name}</p>
+//     <p><strong style="color: red;">Family:</strong> ${fruta.family}</p>
+//     <p><strong style="color: red;">Order:</strong> ${fruta.order}</p>
+//     <p><strong style="color: red;">Genus:</strong> ${fruta.genus}</p>
+//   `;
+
+//   lista.appendChild(div);
+// });
+
+// async function pesquisa(name) {
+//     const frutas = await pesquisarFrutasALL();
+//     return frutas.find((fruta) => fruta.name === name);
+// }
+
+// // Evento ao clicar no botão de pesquisa
+// document.getElementById("pesquisar").addEventListener("click", async () => {
+//     const inputValor = document.getElementById("frutas").value.trim();
+  
+//     if (inputValor.toLowerCase() === "Todas as frutas") {
+//       listarFrutas();
+//     } else {
+//       pesquisarPorFamilia(inputValor);
+//     }
+//   });
 
 
 async function render(){
@@ -127,4 +190,3 @@ document.getElementById('pesquisar')
                 render()
         }
     })
-

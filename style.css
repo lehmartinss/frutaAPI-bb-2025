@@ -124,20 +124,31 @@ main{
     color: black;
     margin-top:  10px;
 }
-/* 
-.info {
-    text-align: left;
-}
-.info span {
-    font-weight: bold;
-}
-.red { color: red; } */
 
-/* .detalhes, .Card p {
-    padding: 10px;
-    display: grid;
-}
 
-.detalhes p, .Card p {
+.info-card div {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
+  
+  .info-card h1 {
+    font-size: 40px;
     text-align: center;
-}  */
+    padding-bottom: 10px;
+    /* color: red; */
+    color: black;
+  }
+  
+  .info-card ul {
+    list-style: none;
+    padding: 0;
+    text-align: center; 
+  }
+  
+  .info-card li {
+    font-size: 22px;
+    line-height: 1.5;
+    
+  }
+  
